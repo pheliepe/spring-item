@@ -62,6 +62,8 @@ public class SampleStore {
         items.add(itemHaube);
         items.add(itemSteckAchse);
 
-
+        for (Item item : items) {
+            item.Id = items.indexOf(item);
+        }
     }
 }
