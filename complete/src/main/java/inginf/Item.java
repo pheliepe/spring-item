@@ -2,6 +2,13 @@ package inginf;
 import java.util.ArrayList;
 
 public class Item {
+    public Item(String nomenclature, String description, String material)
+    {
+        setNomenclature(nomenclature);
+        setDescription(description);
+        setMaterial(material);
+    }
+    
     public int Id;
     public int getId() {
         return Id;
@@ -111,13 +118,6 @@ public class Item {
         Uses.add(uses);
     }
 
-    public Item(String nomenclature, 
-        String description, 
-        String material){
-        setNomenclature(nomenclature);
-        setDescription(description);
-        setMaterial(material);
-    }
 
    public void printConfStructure(
     ArrayList<Characteristic> configuration){

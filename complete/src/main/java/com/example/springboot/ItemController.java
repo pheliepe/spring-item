@@ -1,6 +1,5 @@
 package com.example.springboot;
 
-import java.lang.reflect.Array;
 import java.util.Map;
 import java.util.ArrayList;
 
@@ -96,21 +95,18 @@ public class ItemController {
 
     @PostMapping("/items-gui/usage")
     public String createUsage(Model model, HttpSession session, @RequestParam Map<String, String> body) {
-        
-        String itemId = body.get("itemUses");
 
-        int ItemId = Integer.parseInt(itemId);
+        int uses_id = Integer.parseInt(body.get("itemUses"));
 
-        int id = Integer.parseInt(body.get("itemUsed"));
+        int used_id = Integer.parseInt(body.get("itemUsed"));
 
-        Item usedItem = getAppStore().getItemById(id);
+        Item usedItem = getAppStore().getItemById(used_id);
         ArrayList<inginf.ItemInstance> uses = usedItem.getUses();
 
-        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), 
-                                                  getAppStore().getItemById(id), uses.size());
+        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), getAppStore().getItemById(used_id), uses.size());
 
         for (int i = 0; i < getAppStore().getItemStore().size()-1; i++) {
-            if (getAppStore().getItemStore().get(i).Id == ItemId) 
+            if (getAppStore().getItemStore().get(i).Id == uses_id) 
             {
                 getAppStore().getItemStore().get(i).getUses().add(instance);
                 System.out.println(getAppStore().getItemStore().get(i).getUses());
@@ -118,7 +114,6 @@ public class ItemController {
                 break;
             }
         }
-        
 
         return "usageCreated";
     }
