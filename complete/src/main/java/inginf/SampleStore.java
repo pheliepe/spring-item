@@ -33,28 +33,28 @@ public class SampleStore {
             "Stahl");
         itemSteckAchse.setEstimatedWeight(5);
 
-        itemAuto.getUses().add(
-            new ItemInstance(
-                "Vorderachse", 
-                itemAchse));
-        itemAuto.getUses().add(
-            new ItemInstance(
-                "Hinterachse", 
-                itemAchse));
-        itemAuto.getUses().add(
-            new ItemInstance(
-                "Aufbau", 
-                itemHaube));
-        itemAuto.getUses().add(
-            new ItemInstance(
-                "Reserverad", itemRad));
+        // itemAuto.getUses().add(
+        //     new ItemInstance(
+        //         "Vorderachse", 
+        //         itemAchse));
+        // itemAuto.getUses().add(
+        //     new ItemInstance(
+        //         "Hinterachse", 
+        //         itemAchse));
+        // itemAuto.getUses().add(
+        //     new ItemInstance(
+        //         "Aufbau", 
+        //         itemHaube));
+        // itemAuto.getUses().add(
+        //     new ItemInstance(
+        //         "Reserverad", itemRad));
 
-        itemAchse.getUses().add(
-            new ItemInstance("Rad links", itemRad));
-        itemAchse.getUses().add(
-            new ItemInstance("Rad rechts", itemRad));
-        itemAchse.getUses().add(
-            new ItemInstance("Steckachse", itemSteckAchse));
+        // itemAchse.getUses().add(
+        //     new ItemInstance("Rad links", itemRad));
+        // itemAchse.getUses().add(
+        //     new ItemInstance("Rad rechts", itemRad));
+        // itemAchse.getUses().add(
+        //     new ItemInstance("Steckachse", itemSteckAchse));
 
         items.add(itemAuto);
         items.add(itemAchse);

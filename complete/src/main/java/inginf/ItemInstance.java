@@ -1,7 +1,21 @@
 package inginf;
 import java.util.ArrayList;
 public class ItemInstance {
+    
+    public ItemInstance(String name, Item represents, int instanceId) {
+        setName(name);
+        setRepresents(represents);
+        setInstanceId(instanceId);
+    }
 
+    int instanceId;
+    public void setInstanceId(int instanceId) {
+        this.instanceId = instanceId;
+    }
+    public int getInstanceId() {
+        return instanceId;
+    }
+    
     String Name;
     public String getName() {
         return Name;
@@ -44,10 +58,6 @@ public class ItemInstance {
             }
         }
         return false;
-    }
-    public ItemInstance(String name, Item represents) {
-        setName(name);
-        setRepresents(represents);
     }
     public void printStructure(int inlineCount) {
         for (int i = 0; i < inlineCount; i++) {

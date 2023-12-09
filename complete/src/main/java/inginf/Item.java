@@ -102,7 +102,7 @@ public class Item {
         }
     }
 
-    ArrayList<ItemInstance> Uses = new ArrayList<ItemInstance>();
+    public ArrayList<ItemInstance> Uses = new ArrayList<ItemInstance>();
     public ArrayList<ItemInstance> getUses() {
         return Uses;
     }

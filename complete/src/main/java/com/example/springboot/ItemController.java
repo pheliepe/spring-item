@@ -1,6 +1,8 @@
 package com.example.springboot;
 
+import java.lang.reflect.Array;
 import java.util.Map;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -99,18 +101,25 @@ public class ItemController {
 
         int ItemId = Integer.parseInt(itemId);
 
-        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), 
-                                                  getAppStore().getItemById(ItemId));
-
         int id = Integer.parseInt(body.get("itemUsed"));
 
+        Item usedItem = getAppStore().getItemById(id);
+        ArrayList<inginf.ItemInstance> uses = usedItem.getUses();
+
+        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), 
+                                                  getAppStore().getItemById(id), uses.size());
+
         for (int i = 0; i < getAppStore().getItemStore().size()-1; i++) {
-            if (getAppStore().getItemStore().get(i).Id == id) {
+            if (getAppStore().getItemStore().get(i).Id == ItemId) 
+            {
                 getAppStore().getItemStore().get(i).getUses().add(instance);
                 System.out.println(getAppStore().getItemStore().get(i).getUses());
+                model.addAttribute("usageId", instance.getInstanceId());
                 break;
             }
         }
+        
+
         return "usageCreated";
     }
 }
