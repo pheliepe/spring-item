@@ -107,6 +107,10 @@ public class Item {
         return Uses;
     }
 
+    public void addUses(ItemInstance uses) {
+        Uses.add(uses);
+    }
+
     public Item(String nomenclature, 
         String description, 
         String material){

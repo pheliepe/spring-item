@@ -38,4 +38,12 @@ public class AppStore {
         itemStore.add(item);
         return item;
     }    
+    
+    public inginf.Item getItemById(int id) {
+        for (inginf.Item item : itemStore) {
+            if (item.Id == id)
+                return item;
+        }
+        return null;
+    }
 }

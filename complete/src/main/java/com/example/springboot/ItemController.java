@@ -85,4 +85,32 @@ public class ItemController {
             }
         return "showItem";
     }
+
+    @GetMapping("/items-gui/createUsage")
+    public String createUsage(Model model, HttpSession session) {
+        model.addAttribute("item", getAppStore().getItemStore());
+        return "usage";
+    }
+
+    @PostMapping("/items-gui/usage")
+    public String createUsage(Model model, HttpSession session, @RequestParam Map<String, String> body) {
+        
+        String itemId = body.get("itemUses");
+
+        int ItemId = Integer.parseInt(itemId);
+
+        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), 
+                                                  getAppStore().getItemById(ItemId));
+
+        int id = Integer.parseInt(body.get("itemUsed"));
+
+        for (int i = 0; i < getAppStore().getItemStore().size()-1; i++) {
+            if (getAppStore().getItemStore().get(i).Id == id) {
+                getAppStore().getItemStore().get(i).getUses().add(instance);
+                System.out.println(getAppStore().getItemStore().get(i).getUses());
+                break;
+            }
+        }
+        return "usageCreated";
+    }
 }
