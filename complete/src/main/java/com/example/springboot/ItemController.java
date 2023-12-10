@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 import java.util.Map;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import inginf.Item;
 
 import jakarta.servlet.http.HttpSession;
+
+import inginf.ItemInstance;
 
 @Controller
 public class ItemController {
@@ -48,6 +51,7 @@ public class ItemController {
             item.setEstimatedWeight(Integer.parseInt(body.get("EstimatedWeight")));
         getAppStore().addNewItem(item);
         model.addAttribute("id", item.Id);
+
         return "itemCreated";
     }
 
@@ -58,9 +62,7 @@ public class ItemController {
     
     @GetMapping("/items-gui/list")
     public String listItems(Model model) {
-        model.addAttribute(
-            "items", 
-            getAppStore().getItemStore());
+        model.addAttribute("items", getAppStore().getItemStore());
         return "listItems";
     }
 
@@ -69,19 +71,45 @@ public class ItemController {
         model.addAttribute(
             "id", id);
         for (Item item : getAppStore().getItemStore())
-            if (item.Id == id) {
+            if (item.Id == id) 
+            {
                 getAppStore().getItemStore().remove(item);
                 break;
             }
         return "itemDeleted";
     }
 
+    // TODO: Instance wird nicht gelöscht
+    // @GetMapping("/items-gui/{id}/{usage_name}/deleteUsage")
+    // public String deleteUsage(@PathVariable int id, @PathVariable String usage_name , Model model)
+    // {
+    //     model.addAttribute("id", id);
+    //     model.addAttribute("usage_name", usage_name);
+    //     for (Item item : getAppStore().getItemStore())
+    //         if (item.Id == id) 
+    //         {
+    //             for (ItemInstance instance: item.getUses())
+    //             {
+    //                 if (instance.getName() == usage_name)
+    //                 {
+    //                     item.getUses().remove(instance);
+    //                     ArrayList<ItemInstance> temp = item.getUses();
+    //                     System.out.println(temp);
+    //                     break;
+    //                 }
+    //             }
+    //             break;
+    //         }
+    //     return "usageDeleted";
+    // }
+
     @GetMapping("/items-gui/{id}/show")
     public String showItem(@PathVariable int id, Model model) {        
         model.addAttribute(
             "id", id);
         for (Item item : getAppStore().getItemStore())
-            if (item.Id == id) {
+            if (item.Id == id) 
+            {
                 model.addAttribute(
                     "item", item);
                 break;
@@ -99,20 +127,15 @@ public class ItemController {
     public String createUsage(Model model, HttpSession session, @RequestParam Map<String, String> body) {
 
         int uses_id = Integer.parseInt(body.get("itemUses"));
-
         int used_id = Integer.parseInt(body.get("itemUsed"));
 
-        Item usedItem = getAppStore().getItemById(used_id);
-        ArrayList<inginf.ItemInstance> uses = usedItem.getUses();
-
-        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), getAppStore().getItemById(used_id), uses.size());
+        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), getAppStore().getItemById(used_id));
 
         for (int i = 0; i < getAppStore().getItemStore().size()-1; i++) {
             if (getAppStore().getItemStore().get(i).Id == uses_id) 
             {
                 getAppStore().getItemStore().get(i).getUses().add(instance);
-                System.out.println(getAppStore().getItemStore().get(i).getUses());
-                model.addAttribute("usageId", instance.getInstanceId());
+
                 model.addAttribute("usesId", uses_id);
                 break;
             }
@@ -120,12 +143,13 @@ public class ItemController {
 
         return "usageCreated";
     }
-
+    
     @GetMapping("/items-gui/{id}/show_instances")
     public String showInstances(@PathVariable int id, Model model) {
         model.addAttribute("id", id);
         for (Item item : getAppStore().getItemStore())
-            if (item.Id == id) {
+            if (item.Id == id) 
+            {
                 model.addAttribute(
                     "item", item);
                 break;

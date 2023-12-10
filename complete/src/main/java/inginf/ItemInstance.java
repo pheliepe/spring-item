@@ -2,19 +2,19 @@ package inginf;
 import java.util.ArrayList;
 public class ItemInstance {
     
-    public ItemInstance(String name, Item represents, int instanceId) {
+    public ItemInstance(String name, Item represents) {
         setName(name);
         setRepresents(represents);
-        setInstanceId(instanceId);
+        // setInstanceId(instanceId);
     }
 
-    int instanceId;
-    public void setInstanceId(int instanceId) {
-        this.instanceId = instanceId;
-    }
-    public int getInstanceId() {
-        return instanceId;
-    }
+    // int instanceId;
+    // public void setInstanceId(int InstanceId) {
+    //     InstanceId = instanceId;
+    // }
+    // public int getInstanceId() {
+    //     return instanceId;
+    // }
     
     String Name;
     public String getName() {

@@ -11,7 +11,7 @@
     <br>
     <h1>Create new ItemInstance</h2>
 <form method="post", action="/items-gui/usage">
-    <label for="itemUses">Select the item which uses the item below:</label>
+    <label for="itemUses">Select item which uses item below:</label>
     <select id="itemUses" name="itemUses">
         <option th:each="item : ${item}" th:value="${item.Id}" th:text="${item.nomenclature}">Item</option>
 </select>
@@ -19,7 +19,7 @@
 <br>
 <br>
 
-<label for="itemUsed">Select the Item whi h is used by the item above:</label>
+<label for="itemUsed">Select item which is used by the item above:</label>
 <select id="itemUsed" name="itemUsed">
     <option th:each="item : ${item}" th:value="${item.Id}" th:text="${item.nomenclature}">Item</option>
 
@@ -32,7 +32,7 @@
 <br>
 <br>
 
-<td><input type="submit"/>Save Usage</td>
+<td><input type="submit" value="create"/></td>
 </form>
 </body>
 </html>
