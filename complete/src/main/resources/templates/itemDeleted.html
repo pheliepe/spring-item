@@ -5,6 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="|Item deleted with Id ${id}!|" />
+    <h2><p th:text="|Item deleted with Id ${id}!|" /></h2>
+    <br>
+    <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <br>
 </body>
 </html>

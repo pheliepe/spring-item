@@ -5,6 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+    <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <br>
     <h1>Create new ItemInstance</h2>
 <form method="post", action="/items-gui/usage">
     <label for="itemUses">Select the item which uses the item below:</label>

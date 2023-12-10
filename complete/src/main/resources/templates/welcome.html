@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Usage created successfully!</title>
+<head> 
+    <title>Item created</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+    <h2>Weclome to project spring-item</h2>
+
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/{id}/show(id=${usesId})}"><button>show item</button></a>&nbsp;&nbsp;
-    <br>
-    <h2><p th:text="|Usage created with Id ${usageId}!|" ></p></h2>
 </body>
 </html>

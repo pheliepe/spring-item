@@ -5,23 +5,28 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h2>List Items</h2>
-<table>
-    <tr>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Material</td>
-    </tr>
-    <tr th:each="item : ${items}">
-        <td th:text="${item.nomenclature}">Item Name</td>
-        <td th:text="${item.description}">Item Description</td>
-        <td th:text="${item.material}">Item Material</td>      
-        <td th:text="${item.id}"></td>  
-        
-        <td><a th:href="@{/items-gui/{id}/delete(id=${item.id})}">delete</a></td>
-        <td><a th:href="@{/items-gui/{id}/show(id=${item.id})}">show</a></td>
+    <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <br>
+    <h2>List Items</h2>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Material</td>
+        </tr>
 
-    </tr>
-</table>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.nomenclature}">Item Name</td>
+            <td th:text="${item.description}">Item Description</td>
+            <td th:text="${item.material}">Item Material</td>      
+            <td th:text="${item.id}">ID</td>
+
+            <td><a th:href="@{/items-gui/{id}/delete(id=${item.id})}">delete</a></td>
+            <td><a th:href="@{/items-gui/{id}/show(id=${item.id})}">show</a></td>
+            <td><a th:href="@{/items-gui/{id}/show_instances(id=${item.id})}">instances</a></td>
+
+        </tr>
+    </table>
 </body>
 </html>

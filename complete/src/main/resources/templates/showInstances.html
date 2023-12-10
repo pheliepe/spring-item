@@ -9,24 +9,8 @@
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
-    <br>
-    <h2>Show Item</h2>
-    <table>
-        <tr>
-            <td>Item Name</td>
-            <td th:text="${item.nomenclature}">Item Name</td>
-        </tr>
-        <tr>
-            <td>Item Description</td>
-            <td th:text="${item.description}">Item Description</td>
-        </tr>
-        <tr>
-            <td>Item Material</td>
-            <td th:text="${item.material}">Item Material</td>
-        </tr>
-    </table>
+    <h2>Instances of <span th:text="${item.nomenclature}"></span></h2>
 
-    <h3>Produktstruktur:</h3>
     <div class="tree">
         <div th:fragment="treeviewItem(item)">
             <span th:text="${item.nomenclature}">Item</span>
@@ -34,15 +18,10 @@
                 <li th:each="child : ${item.getUses()}">
                     <i><span th:text="${child.name}">ItemInstance</span></i>                                
                     <div th:replace="this :: treeviewItem(${child.represents})"></div>
-
-                    <br>
                 </li>
             </ul>
         </div>
     </div>
-    <br>
-    <a th:href="@{/items-gui/list}"><button>list</button></a>
-    <br>
 
 </body>
 </html>

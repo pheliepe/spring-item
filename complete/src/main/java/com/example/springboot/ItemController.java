@@ -26,7 +26,10 @@ public class ItemController {
             _AppStore = context.getBean(AppStore.class);
         return _AppStore;
     }
-
+    @GetMapping("/")
+    public String welcome() {
+        return "welcome";
+    }
     @PostMapping("/items-gui")
     public String createItem(
         Model model,
@@ -44,8 +47,7 @@ public class ItemController {
         if (body.get("EstimatedWeight") != null && body.get("EstimatedWeight").length() > 0)
             item.setEstimatedWeight(Integer.parseInt(body.get("EstimatedWeight")));
         getAppStore().addNewItem(item);
-        model.addAttribute(
-                "id", item.Id);
+        model.addAttribute("id", item.Id);
         return "itemCreated";
     }
 
@@ -84,7 +86,7 @@ public class ItemController {
                     "item", item);
                 break;
             }
-        return "showItem";
+        return "showTemplate2";
     }
 
     @GetMapping("/items-gui/createUsage")
@@ -111,10 +113,23 @@ public class ItemController {
                 getAppStore().getItemStore().get(i).getUses().add(instance);
                 System.out.println(getAppStore().getItemStore().get(i).getUses());
                 model.addAttribute("usageId", instance.getInstanceId());
+                model.addAttribute("usesId", uses_id);
                 break;
             }
         }
 
         return "usageCreated";
+    }
+
+    @GetMapping("/items-gui/{id}/show_instances")
+    public String showInstances(@PathVariable int id, Model model) {
+        model.addAttribute("id", id);
+        for (Item item : getAppStore().getItemStore())
+            if (item.Id == id) {
+                model.addAttribute(
+                    "item", item);
+                break;
+            }
+        return "showInstances";
     }
 }

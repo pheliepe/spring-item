@@ -3,7 +3,45 @@
 <head> 
     <title>Create Item</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <style>
+        /* Hier können Sie das Styling anpassen */
+        /* Zum Beispiel: */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .tree {
+            margin-left: 20px;
+        }
+        .tree span {
+            font-weight: bold;
+        }
+        .tree ul {
+            list-style-type: none;
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        .tree li {
+            margin-bottom: 5px;
+        }
+        .tree i {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
@@ -13,15 +51,15 @@
     <h2>Show Item</h2>
     <table>
         <tr>
-            <td>Item Name</td>
+            <th>Item Name</th>
             <td th:text="${item.nomenclature}">Item Name</td>
         </tr>
         <tr>
-            <td>Item Description</td>
+            <th>Item Description</th>
             <td th:text="${item.description}">Item Description</td>
         </tr>
         <tr>
-            <td>Item Material</td>
+            <th>Item Material</th>
             <td th:text="${item.material}">Item Material</td>
         </tr>
     </table>
@@ -30,19 +68,13 @@
     <div class="tree">
         <div th:fragment="treeviewItem(item)">
             <span th:text="${item.nomenclature}">Item</span>
-            <ul th:if="${item.getUses().size() > 0}">            
+            <ul th:if="${item.getUses().size() > 0}">
                 <li th:each="child : ${item.getUses()}">
                     <i><span th:text="${child.name}">ItemInstance</span></i>                                
                     <div th:replace="this :: treeviewItem(${child.represents})"></div>
-
-                    <br>
                 </li>
             </ul>
         </div>
     </div>
-    <br>
-    <a th:href="@{/items-gui/list}"><button>list</button></a>
-    <br>
-
 </body>
 </html>

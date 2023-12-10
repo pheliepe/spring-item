@@ -17,13 +17,13 @@ public class HelloController {
 	 * Einfacher Test, ob die Anwendung läuft.
 	 */
 
-	@GetMapping("/")
-	public String index(HttpSession session) {
-		String message = "Greetings from Item Manager in Spring Boot!";
-		// Access the appStore singleton
-		AppStore appStore = context.getBean(AppStore.class);
-		return message + " " + appStore.getItemCount();
-	}
+	// @GetMapping("/")
+	// public String index(HttpSession session) {
+	// 	String message = "Greetings from Item Manager in Spring Boot!";
+	// 	// Access the appStore singleton
+	// 	AppStore appStore = context.getBean(AppStore.class);
+	// 	return message + " " + appStore.getItemCount();
+	// }
 
 
 

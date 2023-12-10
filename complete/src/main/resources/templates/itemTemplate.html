@@ -5,6 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<a th:href="@{/items-gui/list}"><button>list</button></a>&nbsp;&nbsp;
+<a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+<a th:href="@{/items-gui}"><button>reset request</button></a>
 <h2>Create new Item</h2>
 <form method="post">
 <table>
@@ -22,9 +25,15 @@
     </tr>
     <tr>
         <td></td>
-        <td><input type="submit"/>create</td>
     </tr>
 </table>
+<div>
+    <input type="submit" value="create"/>
+</div>
+
 </form>
+<br>
+<h4>Go to:</h4>
+<br>
 </body>
 </html>
