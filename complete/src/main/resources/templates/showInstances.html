@@ -9,6 +9,8 @@
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/{id}/show(id=${item.id})}"><button>show item</button></a>
+    <br>
     <h2>Instances of <span th:text="${item.nomenclature}"></span></h2>
 
     <div class="tree">
@@ -20,7 +22,7 @@
                         <span th:text="${child.name}">ItemInstance</span>
                     </i>                                
                     <th:block th:replace=":: treeviewItem(${child.represents})">&nbsp;&nbsp;</th:block> 
-                    <a th:href="@{/items-gui/{id}/{usage_id}/deleteUsage(id=${item.id}, usage_name=${child.instanceId})}">delete</a>
+                    <a th:href="@{/items-gui/{id}/{usage_id}/deleteUsage(id=${item.id}, usage_id=${child.instanceId})}">delete</a>
                 
                 </li>
             </ul>

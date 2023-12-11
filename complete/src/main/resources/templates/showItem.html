@@ -34,7 +34,7 @@
                 <li th:each="child : ${item.getUses()}">
                     <i><span th:text="${child.name}">ItemInstance</span></i>                                
                     <div th:replace="this :: treeviewItem(${child.represents})"></div>
-
+                    <a th:href="@{/items-gui/{id}/{usage_id}/deleteUsage(id=${item.id}, usage_id=${child.instanceId})}">delete</a>
                     <br>
                 </li>
             </ul>

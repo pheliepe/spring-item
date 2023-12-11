@@ -10,29 +10,30 @@
     <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
     <br>
     <h1>Create new ItemInstance</h2>
+
 <form method="post", action="/items-gui/usage">
     <label for="itemUses">Select item which uses item below:</label>
     <select id="itemUses" name="itemUses">
         <option th:each="item : ${item}" th:value="${item.Id}" th:text="${item.nomenclature}">Item</option>
-</select>
+    </select>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<label for="itemUsed">Select item which is used by the item above:</label>
-<select id="itemUsed" name="itemUsed">
-    <option th:each="item : ${item}" th:value="${item.Id}" th:text="${item.nomenclature}">Item</option>
+    <label for="itemUsed">Select item which is used by the item above:</label>
+    <select id="itemUsed" name="itemUsed">
+        <option th:each="item : ${item}" th:value="${item.Id}" th:text="${item.nomenclature}">Item</option>
+    </select>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<label for="itemUsage">Enter how the item is used:</label>
-<br>
-<input type="text" id="itemUsage" name="itemUsage">
-<br>
-<br>
+    <label for="itemUsage">Enter how the item is used:</label>
+    <input type="text" id="itemUsage" name="itemUsage">
+    <br>
+    <br>
 
-<td><input type="submit" value="create"/></td>
+    <td><input type="submit" value="create"/></td>
 </form>
 </body>
 </html>
