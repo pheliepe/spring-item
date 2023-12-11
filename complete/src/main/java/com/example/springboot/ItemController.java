@@ -1,7 +1,7 @@
 package com.example.springboot;
 
 import java.util.Map;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,29 +79,30 @@ public class ItemController {
         return "itemDeleted";
     }
 
-    // TODO: Instance wird nicht gelöscht
-    // @GetMapping("/items-gui/{id}/{usage_name}/deleteUsage")
-    // public String deleteUsage(@PathVariable int id, @PathVariable String usage_name , Model model)
-    // {
-    //     model.addAttribute("id", id);
-    //     model.addAttribute("usage_name", usage_name);
-    //     for (Item item : getAppStore().getItemStore())
-    //         if (item.Id == id) 
-    //         {
-    //             for (ItemInstance instance: item.getUses())
-    //             {
-    //                 if (instance.getName() == usage_name)
-    //                 {
-    //                     item.getUses().remove(instance);
-    //                     ArrayList<ItemInstance> temp = item.getUses();
-    //                     System.out.println(temp);
-    //                     break;
-    //                 }
-    //             }
-    //             break;
-    //         }
-    //     return "usageDeleted";
-    // }
+    // TODO: Instance wird nicht gelöscht (mögl. Instanz aus falschem Item gelöscht; vll aus used statt uses)
+    @GetMapping("/items-gui/{id}/{usage_id}/deleteUsage")
+    public String deleteUsage(@PathVariable int id, @PathVariable String usage_id , Model model)
+    {
+        model.addAttribute("id", id);
+        model.addAttribute("usage_id", usage_id);
+        int tempUsageId = Integer.parseInt(usage_id);
+        for (Item item : getAppStore().getItemStore())
+            if (item.Id == id) 
+            {
+                for (ItemInstance instance: item.getUses())
+                {
+                    if (instance.getInstanceId() == tempUsageId)
+                    {
+                        item.getUses().remove(instance);
+                        ArrayList<ItemInstance> temp = item.getUses();
+                        System.out.println(temp);
+                        break;
+                    }
+                }
+                break;
+            }
+        return "usageDeleted";
+    }
 
     @GetMapping("/items-gui/{id}/show")
     public String showItem(@PathVariable int id, Model model) {        
@@ -128,8 +129,11 @@ public class ItemController {
 
         int uses_id = Integer.parseInt(body.get("itemUses"));
         int used_id = Integer.parseInt(body.get("itemUsed"));
+        
+        Item usedItem = getAppStore().getItemById(uses_id);
+        ArrayList<inginf.ItemInstance> uses = usedItem.getUses();
 
-        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), getAppStore().getItemById(used_id));
+        inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), getAppStore().getItemById(used_id), uses.size());
 
         for (int i = 0; i < getAppStore().getItemStore().size()-1; i++) {
             if (getAppStore().getItemStore().get(i).Id == uses_id) 
