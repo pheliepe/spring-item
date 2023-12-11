@@ -79,7 +79,6 @@ public class ItemController {
         return "itemDeleted";
     }
 
-    // TODO: Instance wird nicht gelöscht (mögl. Instanz aus falschem Item gelöscht; vll aus used statt uses)
     @GetMapping("/items-gui/{id}/{usage_id}/deleteUsage")
     public String deleteUsage(@PathVariable int id, @PathVariable String usage_id , Model model)
     {
@@ -101,7 +100,8 @@ public class ItemController {
                 }
                 break;
             }
-        return "usageDeleted";
+            // return "showInstances";
+            return "usageDeleted";
     }
 
     @GetMapping("/items-gui/{id}/show")
@@ -115,7 +115,7 @@ public class ItemController {
                     "item", item);
                 break;
             }
-        return "showTemplate2";
+        return "showTemplate3";
     }
 
     @GetMapping("/items-gui/createUsage")
@@ -144,10 +144,9 @@ public class ItemController {
                 break;
             }
         }
-
         return "usageCreated";
     }
-    
+
     @GetMapping("/items-gui/{id}/show_instances")
     public String showInstances(@PathVariable int id, Model model) {
         model.addAttribute("id", id);
