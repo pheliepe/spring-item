@@ -10,7 +10,7 @@
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/instanceTemplate}"><button>new instance</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/{id}/show(id=${item.id})}"><button>show item</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/{id}/showInstances_delete(id=${item.id})}"><button>delete</button></a>
+    <a th:href="@{/items-gui/{id}/showInstances_delete(id=${item.id})}"><button>editor</button></a>
     <br>
     <h2>Instances of <span th:text="${item.nomenclature}"></span></h2>
 
