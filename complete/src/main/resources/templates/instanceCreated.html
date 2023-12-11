@@ -7,9 +7,9 @@
 <body>
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/instanceTemplate}"><button>new instance</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/{id}/show(id=${usesId})}"><button>show item</button></a>&nbsp;&nbsp;
     <br>
-    <h2><p th:text="|Usage created!|" ></p></h2>
+    <h2><p th:text="|Instance created!|" ></p></h2>
 </body>
 </html>

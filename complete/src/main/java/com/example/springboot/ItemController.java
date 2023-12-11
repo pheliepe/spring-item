@@ -63,7 +63,7 @@ public class ItemController {
     @GetMapping("/items-gui/list")
     public String listItems(Model model) {
         model.addAttribute("items", getAppStore().getItemStore());
-        return "listItems";
+        return "listItems2";
     }
 
     @GetMapping("/items-gui/{id}/delete")
@@ -79,7 +79,7 @@ public class ItemController {
         return "itemDeleted";
     }
 
-    @GetMapping("/items-gui/{id}/{usage_id}/deleteUsage")
+    @GetMapping("/items-gui/{id}/{usage_id}/deleteInstance")
     public String deleteUsage(@PathVariable int id, @PathVariable String usage_id , Model model)
     {
         model.addAttribute("id", id);
@@ -101,50 +101,54 @@ public class ItemController {
                 break;
             }
             // return "showInstances";
-            return "usageDeleted";
+            return "instanceDeleted";
     }
 
-    @GetMapping("/items-gui/{id}/show")
-    public String showItem(@PathVariable int id, Model model) {        
-        model.addAttribute(
-            "id", id);
+    @GetMapping("/items-gui/{id}/showInstances_delete")
+    public String editItem(@PathVariable int id, Model model) {        
+        model.addAttribute("id", id);
         for (Item item : getAppStore().getItemStore())
             if (item.Id == id) 
             {
-                model.addAttribute(
-                    "item", item);
+                model.addAttribute("item", item);
+                break;
+            }
+        return "showInstances_delete";
+    }
+    @GetMapping("/items-gui/{id}/show")
+    public String showItem(@PathVariable String id, Model model) {        
+        model.addAttribute("id", id);
+        int tempId= Integer.parseInt(id);
+        for (Item item : getAppStore().getItemStore())
+            if (item.Id == tempId) 
+            {
+                model.addAttribute("item", item);
                 break;
             }
         return "showTemplate3";
     }
 
-    @GetMapping("/items-gui/createUsage")
+    @GetMapping("/items-gui/instanceTemplate")
     public String createUsage(Model model, HttpSession session) {
         model.addAttribute("item", getAppStore().getItemStore());
-        return "usage";
+        return "instanceTemplate";
     }
 
-    @PostMapping("/items-gui/usage")
+    @PostMapping("/items-gui/instanceTemplate")
     public String createUsage(Model model, HttpSession session, @RequestParam Map<String, String> body) {
 
         int uses_id = Integer.parseInt(body.get("itemUses"));
         int used_id = Integer.parseInt(body.get("itemUsed"));
         
-        Item usedItem = getAppStore().getItemById(uses_id);
-        ArrayList<inginf.ItemInstance> uses = usedItem.getUses();
+        Item usesItem = getAppStore().getItemById(uses_id);
+        ArrayList<inginf.ItemInstance> uses = usesItem.getUses();
 
         inginf.ItemInstance instance = new inginf.ItemInstance(body.get("itemUsage"), getAppStore().getItemById(used_id), uses.size());
 
-        for (int i = 0; i < getAppStore().getItemStore().size()-1; i++) {
-            if (getAppStore().getItemStore().get(i).Id == uses_id) 
-            {
-                getAppStore().getItemStore().get(i).getUses().add(instance);
-
-                model.addAttribute("usesId", uses_id);
-                break;
-            }
-        }
-        return "usageCreated";
+        uses.add(instance);
+        model.addAttribute("usesId", uses_id);
+        
+        return "instanceCreated";
     }
 
     @GetMapping("/items-gui/{id}/show_instances")

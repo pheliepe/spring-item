@@ -7,10 +7,10 @@
 </head>
 <body>
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
+    <!-- <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui/instanceTemplate}"><button>new instance</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/{id}/show(id=${item.id})}"><button>show item</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/{id}/showInstances_delete(id=${item.id})}"><button>delete</button></a>
+    <a th:href="@{/items-gui/{id}/show(id=${item.id})}"><button>show item</button></a> -->
+    <a th:href="@{/items-gui/{id}/show_instances(id=${item.id})}"><button>quit</button></a>
     <br>
     <h2>Instances of <span th:text="${item.nomenclature}"></span></h2>
 
@@ -21,6 +21,7 @@
                 <li th:each="child : ${item.getUses()}">
                     <i>
                         <span th:text="${child.name}">ItemInstance</span>
+                        <a th:href="@{/items-gui/{id}/{usage_id}/deleteInstance(id=${item.id}, usage_id=${child.instanceId})}">delete</a>
                     </i>                                
                     <th:block th:replace=":: treeviewItem(${child.represents})">&nbsp;&nbsp;</th:block> 
                 

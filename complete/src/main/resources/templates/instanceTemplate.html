@@ -7,11 +7,11 @@
 <body>
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/instanceTemplate}"><button>new instance</button></a>&nbsp;&nbsp;
     <br>
     <h1>Create new ItemInstance</h2>
 
-<form method="post", action="/items-gui/usage">
+<form method="post", action="/items-gui/instanceTemplate">
     <label for="itemUses">Select item which uses item below:</label>
     <select id="itemUses" name="itemUses">
         <option th:each="item : ${item}" th:value="${item.Id}" th:text="${item.nomenclature}">Item</option>

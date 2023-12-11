@@ -44,7 +44,8 @@
 <body>
     <a th:href="@{/items-gui/list}"><button>item list</button></a>&nbsp;&nbsp;
     <a th:href="@{/items-gui}"><button>new item</button></a>&nbsp;&nbsp;
-    <a th:href="@{/items-gui/createUsage}"><button>new instance</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/instanceTemplate}"><button>new instance</button></a>&nbsp;&nbsp;
+    <a th:href="@{/items-gui/{id}/show_instances(id=${item.id})}"><button>show instances</button></a>
     <br>
     <h2>Show Item</h2>
     <table>
@@ -70,7 +71,6 @@
                 <li th:each="child : ${item.getUses()}">
                     <i>
                         <span th:text="${child.name}">ItemInstance</span>
-                        <a th:href="@{/items-gui/{id}/{usage_id}/deleteUsage(id=${item.id}, usage_id=${child.instanceId})}">delete</a>
                     </i>
                                 
                     <div th:replace="this :: treeviewItem(${child.represents})"></div>
